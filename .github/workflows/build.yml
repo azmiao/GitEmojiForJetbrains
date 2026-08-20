@@ -27,7 +27,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build plugin distribution
-        run: ./gradlew buildPlugin
+        run: gradle buildPlugin -Dorg.gradle.java.home=$JAVA_HOME
 
       - name: Locate plugin zip
         id: zip
