@@ -26,15 +26,14 @@ class EmojiTemplateTableModel : ListTableModel<EmojiTemplate>(
     mutableListOf()
 ) {
     override fun setValueAt(aValue: Any?, rowIndex: Int, columnIndex: Int) {
-        val old = items[rowIndex]
-        val new = when (columnIndex) {
-            0 -> old.copy(emoji = aValue as? String ?: "")
-            1 -> old.copy(type = aValue as? String ?: "")
-            2 -> old.copy(name = aValue as? String ?: "")
-            3 -> old.copy(description = aValue as? String ?: "")
-            else -> old
+        val item = items[rowIndex]
+        val value = aValue as? String ?: ""
+        when (columnIndex) {
+            0 -> item.emoji = value
+            1 -> item.type = value
+            2 -> item.name = value
+            3 -> item.description = value
         }
-        items[rowIndex] = new
         fireTableCellUpdated(rowIndex, columnIndex)
     }
 }

@@ -3,12 +3,40 @@ package com.gitmoji.plugin
 import com.intellij.util.xmlb.annotations.Tag
 
 @Tag("template")
-data class EmojiTemplate(
-    val emoji: String = "",
-    val type: String = "",
-    val name: String = "",
-    val description: String = ""
-) {
+class EmojiTemplate {
+    var emoji: String = ""
+    var type: String = ""
+    var name: String = ""
+    var description: String = ""
+
+    constructor()
+
+    constructor(emoji: String, type: String, name: String, description: String) {
+        this.emoji = emoji
+        this.type = type
+        this.name = name
+        this.description = description
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is EmojiTemplate) return false
+        return emoji == other.emoji && type == other.type &&
+               name == other.name && description == other.description
+    }
+
+    override fun hashCode(): Int {
+        var result = emoji.hashCode()
+        result = 31 * result + type.hashCode()
+        result = 31 * result + name.hashCode()
+        result = 31 * result + description.hashCode()
+        return result
+    }
+
+    override fun toString(): String {
+        return "EmojiTemplate(emoji='$emoji', type='$type', name='$name', description='$description')"
+    }
+
     companion object {
         val DEFAULTS = listOf(
             EmojiTemplate("✨", "feat", "引入新功能", "新功能"),
