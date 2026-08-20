@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.intellij.platform") version "2.2.1"
 }
 
-group = "com.gitmoji.plugin"
+group = "com.github.azmiao.gitmoji"
 version = "1.0.0"
 
 repositories {
@@ -30,8 +30,8 @@ dependencies {
 
 intellijPlatform {
     pluginConfiguration {
-        id = "com.gitmoji.plugin"
-        name = "Git Emoji Commit"
+        id = "com.github.azmiao.gitmoji"
+        name = "Git Emoji Lint"
         version = "1.0.0"
         ideaVersion {
             sinceBuild = "242"
@@ -39,7 +39,7 @@ intellijPlatform {
         }
         description = "A plugin that adds emoji prefix templates to the Git commit message editor. Provides a toolbar button in the Commit tool window with 18 default commit type templates. Supports custom format templates and template management through a visual settings page."
         vendor {
-            name = "GitEmoji"
+            name = "GitEmojiLint"
         }
     }
 

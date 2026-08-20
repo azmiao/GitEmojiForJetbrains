@@ -1,6 +1,6 @@
 <div align="center">
 
-# Git Commit Emoji 前缀插件
+# Git Emoji Lint 插件
 
 在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 `feat ✨: ` 格式的 commit 前缀，让提交记录更直观、更规范。
 
@@ -23,7 +23,7 @@
 - **Commit 工具窗口工具栏按钮**：在提交信息编辑区工具栏中显示 emoji 按钮，点击即弹出模板列表。
 - **模板选择弹窗**：列表展示 `emoji + type + name`（如 `✨ feat - 引入新功能`），上下键选择、回车确认，操作流畅。
 - **一键覆盖输入框**：选中模板后自动按格式模板生成前缀并覆盖 commit message 输入框内容，光标自动移到末尾，可直接继续输入正文。
-- **可视化设置页面**：`Settings → Tools → Git Emoji Commit`
+- **可视化设置页面**：`Settings → Tools → Git Emoji Lint`
   - **自定义格式模板**：支持 `${emoji}`、`${type}`、`${name}`、`${description}` 四种占位符，自由组合出你想要的任何前缀格式。
   - **模板列表增删改**：表格中 emoji、type、name、description 四列均可直接编辑，支持添加新模板、删除不用的模板。
 

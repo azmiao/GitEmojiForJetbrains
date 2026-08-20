@@ -1,11 +1,11 @@
 <idea-plugin>
     <id>com.github.azmiao.gitmoji</id>
-    <name>Git Emoji Commit</name>
+    <name>Git Emoji Lint</name>
     <version>1.0.0</version>
-    <vendor email="2362020227@qq.com" url="https://github.com/azmiao/GitEmojiForJetbrains">GitEmoji</vendor>
+    <vendor email="2362020227@qq.com" url="https://github.com/azmiao/GitEmojiLint">GitEmojiLint</vendor>
 
     <description><![CDATA[
-        <h2>Git Commit Emoji 前缀插件</h2>
+        <h2>Git Emoji Lint 插件</h2>
         <p>在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 <code>feat ✨: </code> 格式的 commit 前缀，让提交记录更直观、更规范。</p>
 
         <h3>✨ 功能特性</h3>
@@ -13,7 +13,7 @@
             <li><b>Commit 工具窗口工具栏按钮</b>：在提交信息编辑区工具栏中显示 emoji 按钮，点击即弹出模板列表。</li>
             <li><b>模板选择弹窗</b>：列表展示 <code>emoji + type + name</code>，上下键选择、回车确认，操作流畅。</li>
             <li><b>一键覆盖输入框</b>：选中模板后自动生成前缀并覆盖 commit message 输入框，光标自动移到末尾。</li>
-            <li><b>可视化设置页面</b>：Settings → Tools → Git Emoji Commit，支持自定义格式模板和模板列表增删改。</li>
+            <li><b>可视化设置页面</b>：Settings → Tools → Git Emoji Lint，支持自定义格式模板和模板列表增删改。</li>
         </ul>
 
         <h3>📋 默认模板</h3>
@@ -50,7 +50,7 @@
             parentId="tools"
             instance="com.github.azmiao.gitmoji.settings.GitEmojiConfigurable"
             id="com.github.azmiao.gitmoji.settings.GitEmojiConfigurable"
-            displayName="Git Emoji Commit"/>
+            displayName="Git Emoji Lint"/>
     </extensions>
 
     <actions>

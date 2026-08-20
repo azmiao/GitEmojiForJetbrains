@@ -1,6 +1,6 @@
-package com.gitmoji.plugin.settings
+package com.github.azmiao.gitmoji.settings
 
-import com.gitmoji.plugin.EmojiTemplate
+import com.github.azmiao.gitmoji.EmojiTemplate
 import com.intellij.util.ui.ColumnInfo
 import com.intellij.util.ui.ListTableModel
 

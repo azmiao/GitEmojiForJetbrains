@@ -1,4 +1,4 @@
-package com.gitmoji.plugin
+package com.github.azmiao.gitmoji
 
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
@@ -32,7 +32,7 @@ class InsertEmojiCommitAction : AnAction(), DumbAware {
             NotificationGroupManager.getInstance()
                 .getNotificationGroup("GitEmoji")
                 .createNotification(
-                    "暂无模板，请在 设置 → Tools → Git Emoji Commit 中添加",
+                    "暂无模板，请在 设置 → Tools → Git Emoji Lint 中添加",
                     NotificationType.INFORMATION
                 )
                 .notify(project)

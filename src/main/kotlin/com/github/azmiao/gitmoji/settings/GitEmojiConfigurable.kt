@@ -1,7 +1,7 @@
-package com.gitmoji.plugin.settings
+package com.github.azmiao.gitmoji.settings
 
-import com.gitmoji.plugin.EmojiTemplate
-import com.gitmoji.plugin.GitEmojiSettingsService
+import com.github.azmiao.gitmoji.EmojiTemplate
+import com.github.azmiao.gitmoji.GitEmojiSettingsService
 import com.intellij.openapi.options.Configurable
 import com.intellij.ui.ToolbarDecorator
 import com.intellij.ui.table.TableView
@@ -17,7 +17,7 @@ class GitEmojiConfigurable : Configurable {
     private var tableModel: EmojiTemplateTableModel? = null
     private var table: TableView<EmojiTemplate>? = null
 
-    override fun getDisplayName() = "Git Emoji Commit"
+    override fun getDisplayName() = "Git Emoji Lint"
 
     override fun createComponent(): JComponent {
         val p = JPanel(BorderLayout(0, JBUI.scale(10)))

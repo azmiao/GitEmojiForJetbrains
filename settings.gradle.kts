@@ -1,1 +1,1 @@
-rootProject.name = "GitEmojiForJetbrains"
+rootProject.name = "GitEmojiLint"

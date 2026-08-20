@@ -1,4 +1,4 @@
-package com.gitmoji.plugin
+package com.github.azmiao.gitmoji
 
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.*

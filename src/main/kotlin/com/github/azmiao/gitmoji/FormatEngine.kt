@@ -1,4 +1,4 @@
-package com.gitmoji.plugin
+package com.github.azmiao.gitmoji
 
 object FormatEngine {
 

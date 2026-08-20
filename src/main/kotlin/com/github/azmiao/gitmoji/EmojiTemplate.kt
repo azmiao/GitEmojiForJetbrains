@@ -1,4 +1,4 @@
-package com.gitmoji.plugin
+package com.github.azmiao.gitmoji
 
 import com.intellij.util.xmlb.annotations.Tag
 
