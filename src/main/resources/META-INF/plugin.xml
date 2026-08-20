@@ -26,7 +26,7 @@
                 text="Emoji Commit"
                 description="Insert emoji commit prefix"
                 icon="/icons/emojiCommit.svg">
-            <add-to-group group-id="Vcs.CheckinProjectPanel.Toolbar" anchor="first"/>
+            <add-to-group group-id="Vcs.MessageActionGroup" anchor="first"/>
         </action>
     </actions>
 </idea-plugin>
