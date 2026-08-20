@@ -1,3 +1,4 @@
+.bitfun
 /.bitfun/search/flashgrep-index/
 .intellijPlatform
 build/
@@ -5,3 +6,4 @@ build/
 out/
 *.iml
 .idea/
+docs/superpowers
