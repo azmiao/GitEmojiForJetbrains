@@ -35,7 +35,6 @@ intellijPlatform {
         version = "1.0.0"
         ideaVersion {
             sinceBuild = "242"
-            untilBuild = null
         }
         description = "Git Commit Emoji Prefix Plugin"
         vendor {
