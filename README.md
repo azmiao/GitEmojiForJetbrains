@@ -2,6 +2,8 @@
 
 JetBrains IDE Git Commit Emoji 前缀插件。在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 `feat ✨: ` 格式的 commit 前缀。
 
+![preview.gif](preview.gif)
+
 ## 功能
 
 - **Commit 工具窗口工具栏按钮**：点击弹出模板列表
