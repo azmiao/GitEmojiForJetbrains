@@ -1,0 +1,7 @@
+/.bitfun/search/flashgrep-index/
+.intellijPlatform
+build/
+.gradle/
+out/
+*.iml
+.idea/

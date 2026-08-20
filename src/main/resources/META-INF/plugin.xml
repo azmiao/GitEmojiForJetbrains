@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>com.gitmoji.plugin</id>
+    <name>GitEmojiForJetbrains</name>
+    <version>1.0.0</version>
+    <vendor>GitEmoji</vendor>
+    <description><![CDATA[
+        Git Commit Emoji Prefix Plugin.<br>
+        Select a template in the Commit tool window to insert a formatted emoji prefix.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.vcs</depends>
+    <depends>Git4Idea</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable
+            parentId="tools"
+            instance="com.gitmoji.plugin.settings.GitEmojiConfigurable"
+            id="com.gitmoji.plugin.settings.GitEmojiConfigurable"
+            displayName="Git Emoji Commit"/>
+    </extensions>
+
+    <actions>
+        <action id="com.gitmoji.plugin.InsertEmojiCommitAction"
+                class="com.gitmoji.plugin.InsertEmojiCommitAction"
+                text="Emoji Commit"
+                description="Insert emoji commit prefix"
+                icon="/icons/emojiCommit.svg">
+            <add-to-group group-id="Vcs.CheckinProjectPanel.Toolbar" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
