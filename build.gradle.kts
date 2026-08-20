@@ -58,7 +58,4 @@ tasks {
         sourceCompatibility = "21"
         targetCompatibility = "21"
     }
-    test {
-        useJUnitPlatform()
-    }
 }
