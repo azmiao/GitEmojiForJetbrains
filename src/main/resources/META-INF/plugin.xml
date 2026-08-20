@@ -1,12 +1,45 @@
 <idea-plugin>
-    <id>com.gitmoji.plugin</id>
-    <name>GitEmojiForJetbrains</name>
+    <id>com.github.azmiao.gitmoji</id>
+    <name>Git Emoji Commit</name>
     <version>1.0.0</version>
-    <vendor>GitEmoji</vendor>
+    <vendor email="2362020227@qq.com" url="https://github.com/azmiao/GitEmojiForJetbrains">GitEmoji</vendor>
+
     <description><![CDATA[
-        Git Commit Emoji Prefix Plugin.<br>
-        Select a template in the Commit tool window to insert a formatted emoji prefix.
+        <h2>Git Commit Emoji 前缀插件</h2>
+        <p>在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 <code>feat ✨: </code> 格式的 commit 前缀，让提交记录更直观、更规范。</p>
+
+        <h3>✨ 功能特性</h3>
+        <ul>
+            <li><b>Commit 工具窗口工具栏按钮</b>：在提交信息编辑区工具栏中显示 emoji 按钮，点击即弹出模板列表。</li>
+            <li><b>模板选择弹窗</b>：列表展示 <code>emoji + type + name</code>，上下键选择、回车确认，操作流畅。</li>
+            <li><b>一键覆盖输入框</b>：选中模板后自动生成前缀并覆盖 commit message 输入框，光标自动移到末尾。</li>
+            <li><b>可视化设置页面</b>：Settings → Tools → Git Emoji Commit，支持自定义格式模板和模板列表增删改。</li>
+        </ul>
+
+        <h3>📋 默认模板</h3>
+        <p>内置 18 种常用提交类型模板，包括 feat、fix、perf、refactor、docs、test、ci 等，默认格式为 <code>${type} ${emoji}: </code>。</p>
+
+        <h3>🛠 技术栈</h3>
+        <ul>
+            <li>Kotlin + Gradle Kotlin DSL</li>
+            <li>IntelliJ Platform Gradle Plugin 2.x</li>
+            <li>JDK 21</li>
+            <li>兼容 IntelliJ IDEA 2024.2+</li>
+        </ul>
     ]]></description>
+
+    <change-notes><![CDATA[
+        <h3>1.0.0</h3>
+        <ul>
+            <li>Commit 工具窗口工具栏按钮，快速插入 emoji 前缀</li>
+            <li>18 种默认提交类型模板（feat、fix、perf、refactor 等）</li>
+            <li>可视化设置页面，支持自定义格式模板</li>
+            <li>支持模板列表的增删改查</li>
+            <li>兼容 IntelliJ IDEA 2024.2 及以上版本</li>
+        </ul>
+    ]]></change-notes>
+
+    <idea-version since-build="242"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.vcs</depends>
@@ -15,14 +48,14 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable
             parentId="tools"
-            instance="com.gitmoji.plugin.settings.GitEmojiConfigurable"
-            id="com.gitmoji.plugin.settings.GitEmojiConfigurable"
+            instance="com.github.azmiao.gitmoji.settings.GitEmojiConfigurable"
+            id="com.github.azmiao.gitmoji.settings.GitEmojiConfigurable"
             displayName="Git Emoji Commit"/>
     </extensions>
 
     <actions>
-        <action id="com.gitmoji.plugin.InsertEmojiCommitAction"
-                class="com.gitmoji.plugin.InsertEmojiCommitAction"
+        <action id="com.github.azmiao.gitmoji.InsertEmojiCommitAction"
+                class="com.github.azmiao.gitmoji.InsertEmojiCommitAction"
                 text="Emoji Commit"
                 description="Insert emoji commit prefix"
                 icon="/icons/emojiCommit.svg">
