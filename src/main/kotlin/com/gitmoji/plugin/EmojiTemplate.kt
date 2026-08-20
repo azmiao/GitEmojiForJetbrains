@@ -1,5 +1,8 @@
 package com.gitmoji.plugin
 
+import com.intellij.util.xmlb.annotations.Tag
+
+@Tag("template")
 data class EmojiTemplate(
     val emoji: String = "",
     val type: String = "",
