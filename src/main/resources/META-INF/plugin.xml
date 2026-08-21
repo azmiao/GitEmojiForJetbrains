@@ -1,7 +1,6 @@
 <idea-plugin>
     <id>com.github.azmiao.gitmoji</id>
     <name>Git Emoji Lint</name>
-    <version>1.0.0</version>
     <vendor email="2362020227@qq.com" url="https://github.com/azmiao/GitEmojiLint">GitEmojiLint</vendor>
 
     <description><![CDATA[
@@ -28,19 +27,6 @@
         </ul>
     ]]></description>
 
-    <change-notes><![CDATA[
-        <h3>1.0.0</h3>
-        <ul>
-            <li>Commit 工具窗口工具栏按钮，快速插入 emoji 前缀</li>
-            <li>18 种默认提交类型模板（feat、fix、perf、refactor 等）</li>
-            <li>可视化设置页面，支持自定义格式模板</li>
-            <li>支持模板列表的增删改查</li>
-            <li>兼容 IntelliJ IDEA 2024.2 及以上版本</li>
-        </ul>
-    ]]></change-notes>
-
-    <idea-version since-build="242"/>
-
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.vcs</depends>
     <depends>Git4Idea</depends>
@@ -51,6 +37,7 @@
             instance="com.github.azmiao.gitmoji.settings.GitEmojiConfigurable"
             id="com.github.azmiao.gitmoji.settings.GitEmojiConfigurable"
             displayName="Git Emoji Lint"/>
+        <notificationGroup id="GitEmoji" displayType="BALLOON"/>
     </extensions>
 
     <actions>

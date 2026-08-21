@@ -12,6 +12,7 @@ import com.intellij.ui.ColoredListCellRenderer
 import com.intellij.ui.SimpleTextAttributes
 import com.intellij.ui.awt.RelativePoint
 import com.intellij.ui.components.JBList
+import javax.swing.JComponent
 import javax.swing.JList
 
 class InsertEmojiCommitAction : AnAction(), DumbAware {
@@ -63,8 +64,13 @@ class InsertEmojiCommitAction : AnAction(), DumbAware {
             }
             .createPopup()
 
-        val component = e.inputEvent?.component ?: return
-        popup.show(RelativePoint.getSouthWestOf(component as javax.swing.JComponent))
+        // 工具栏点击时贴着按钮弹出；快捷键触发时没有 inputEvent，回退到焦点区域居中显示
+        val component = e.inputEvent?.component as? JComponent
+        if (component != null && component.isShowing) {
+            popup.show(RelativePoint.getSouthWestOf(component))
+        } else {
+            popup.showInFocusCenter()
+        }
     }
 
     private fun applyTemplate(template: EmojiTemplate, e: AnActionEvent) {

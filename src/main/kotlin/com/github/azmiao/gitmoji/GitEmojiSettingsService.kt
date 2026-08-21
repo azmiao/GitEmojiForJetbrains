@@ -11,7 +11,7 @@ import com.intellij.openapi.components.*
 class GitEmojiSettingsService : PersistentStateComponent<GitEmojiSettingsService.State> {
 
     class State {
-        var templates: MutableList<EmojiTemplate> = EmojiTemplate.DEFAULTS.toMutableList()
+        var templates: MutableList<EmojiTemplate> = defaultTemplates()
         var formatTemplate: String = DEFAULT_FORMAT
     }
 
@@ -32,12 +32,16 @@ class GitEmojiSettingsService : PersistentStateComponent<GitEmojiSettingsService
         set(value) { state.formatTemplate = value }
 
     fun resetToDefaults() {
-        state.templates = EmojiTemplate.DEFAULTS.toMutableList()
+        state.templates = defaultTemplates()
         state.formatTemplate = DEFAULT_FORMAT
     }
 
     companion object {
         const val DEFAULT_FORMAT = "\${type} \${emoji}: "
+
+        /** DEFAULTS 是全局常量，必须深拷贝后再交给可变状态，否则会被就地修改。 */
+        private fun defaultTemplates(): MutableList<EmojiTemplate> =
+            EmojiTemplate.DEFAULTS.mapTo(mutableListOf()) { it.copy() }
 
         fun getInstance(): GitEmojiSettingsService {
             return ApplicationManager.getApplication().getService(GitEmojiSettingsService::class.java)

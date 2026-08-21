@@ -18,6 +18,9 @@ class EmojiTemplate {
         this.description = description
     }
 
+    /** 返回内容相同的独立副本，避免设置页与已保存状态、DEFAULTS 常量共享可变对象。 */
+    fun copy(): EmojiTemplate = EmojiTemplate(emoji, type, name, description)
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is EmojiTemplate) return false

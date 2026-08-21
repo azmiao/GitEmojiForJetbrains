@@ -11,7 +11,7 @@ import javax.swing.*
 
 class GitEmojiConfigurable : Configurable {
 
-    private val settings = GitEmojiSettingsService.getInstance()
+    private val settings get() = GitEmojiSettingsService.getInstance()
     private var panel: JPanel? = null
     private var formatField: JTextField? = null
     private var tableModel: EmojiTemplateTableModel? = null
@@ -32,18 +32,18 @@ class GitEmojiConfigurable : Configurable {
         formatPanel.add(formatField, BorderLayout.CENTER)
         p.add(formatPanel, BorderLayout.NORTH)
 
-        // 模板列表表格
-        tableModel = EmojiTemplateTableModel()
-        table = TableView(tableModel)
-        tableModel!!.items = settings.templates.toMutableList()
+        // 模板列表表格：编辑副本，避免直接改动已保存的模板对象
+        val model = EmojiTemplateTableModel()
+        tableModel = model
+        table = TableView(model)
+        model.items = copyOf(settings.templates)
 
         val decorator = ToolbarDecorator.createDecorator(table!!)
             .setAddAction {
-                tableModel!!.addRow(EmojiTemplate())
+                model.addRow(EmojiTemplate())
             }
             .setRemoveAction {
-                val selected = table!!.selectedRows
-                selected.sortedDescending().forEach { tableModel!!.removeRow(it) }
+                table!!.selectedRows.sortedDescending().forEach { model.removeRow(it) }
             }
             .disableUpDownActions()
 
@@ -52,7 +52,7 @@ class GitEmojiConfigurable : Configurable {
         // 恢复默认按钮
         val resetButton = JButton("恢复默认").apply {
             addActionListener {
-                tableModel!!.items = EmojiTemplate.DEFAULTS.toMutableList()
+                model.items = copyOf(EmojiTemplate.DEFAULTS)
                 formatField!!.text = GitEmojiSettingsService.DEFAULT_FORMAT
             }
         }
@@ -73,12 +73,12 @@ class GitEmojiConfigurable : Configurable {
 
     override fun apply() {
         settings.formatTemplate = formatField?.text ?: GitEmojiSettingsService.DEFAULT_FORMAT
-        settings.templates = tableModel?.items?.toMutableList() ?: mutableListOf()
+        settings.templates = copyOf(tableModel?.items ?: emptyList())
     }
 
     override fun reset() {
         formatField?.text = settings.formatTemplate
-        tableModel?.items = settings.templates.toMutableList()
+        tableModel?.items = copyOf(settings.templates)
     }
 
     override fun disposeUIResources() {
@@ -87,4 +87,7 @@ class GitEmojiConfigurable : Configurable {
         tableModel = null
         table = null
     }
+
+    private fun copyOf(templates: List<EmojiTemplate>): MutableList<EmojiTemplate> =
+        templates.mapTo(mutableListOf()) { it.copy() }
 }
