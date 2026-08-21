@@ -8,6 +8,8 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.openapi.vcs.VcsDataKeys
+import com.intellij.openapi.wm.IdeFocusManager
+import com.intellij.ui.EditorTextField
 import com.intellij.ui.ColoredListCellRenderer
 import com.intellij.ui.SimpleTextAttributes
 import com.intellij.ui.awt.RelativePoint
@@ -78,7 +80,19 @@ class InsertEmojiCommitAction : AnAction(), DumbAware {
         val settings = GitEmojiSettingsService.getInstance()
         val format = settings.formatTemplate.ifBlank { GitEmojiSettingsService.DEFAULT_FORMAT }
         val prefix = FormatEngine.format(format, template)
-        workflow.commitMessageUi.setText(prefix)
-        workflow.commitMessageUi.focus()
+        val ui = workflow.commitMessageUi
+        ui.setText(prefix)
+
+        // 不调用 ui.focus()，因为它内部会同步调用 selectAll()。
+        // 直接请求焦点到编辑器内部组件，然后手动设置光标位置。
+        val editorField = (ui as? com.intellij.openapi.vcs.ui.CommitMessage)?.editorField
+            ?: (ui as? EditorTextField)
+        editorField?.let { field ->
+            IdeFocusManager.getGlobalInstance().requestFocus(field.focusTarget, true)
+            field.editor?.let { editor ->
+                editor.selectionModel.removeSelection()
+                editor.caretModel.moveToOffset(prefix.length)
+            }
+        }
     }
 }

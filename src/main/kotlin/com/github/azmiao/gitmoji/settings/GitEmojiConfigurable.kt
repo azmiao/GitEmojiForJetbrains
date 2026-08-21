@@ -41,6 +41,10 @@ class GitEmojiConfigurable : Configurable {
         val decorator = ToolbarDecorator.createDecorator(table!!)
             .setAddAction {
                 model.addRow(EmojiTemplate())
+                // 让新增的空行可见并高亮，方便立即编辑
+                val newIndex = model.rowCount - 1
+                table!!.setRowSelectionInterval(newIndex, newIndex)
+                table!!.scrollRectToVisible(table!!.getCellRect(newIndex, 0, true))
             }
             .setRemoveAction {
                 table!!.selectedRows.sortedDescending().forEach { model.removeRow(it) }
