@@ -31,11 +31,6 @@ class GitEmojiSettingsService : PersistentStateComponent<GitEmojiSettingsService
         get() = state.formatTemplate
         set(value) { state.formatTemplate = value }
 
-    fun resetToDefaults() {
-        state.templates = defaultTemplates()
-        state.formatTemplate = DEFAULT_FORMAT
-    }
-
     companion object {
         const val DEFAULT_FORMAT = "\${type} \${emoji}: "
 

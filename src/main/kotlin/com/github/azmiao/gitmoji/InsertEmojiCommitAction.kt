@@ -6,7 +6,7 @@ import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAware
-import com.intellij.openapi.ui.popup.JBPopupFactory
+import com.intellij.openapi.ui.popup.PopupChooserBuilder
 import com.intellij.openapi.vcs.VcsDataKeys
 import com.intellij.openapi.wm.IdeFocusManager
 import com.intellij.ui.EditorTextField
@@ -32,9 +32,11 @@ class InsertEmojiCommitAction : AnAction(), DumbAware {
         val templates = settings.templates
 
         if (templates.isEmpty()) {
+            @Suppress("DialogTitleCapitalization")
             NotificationGroupManager.getInstance()
                 .getNotificationGroup("GitEmoji")
                 .createNotification(
+                    "Git Emoji Lint",
                     "暂无模板，请在 设置 → Tools → Git Emoji Lint 中添加",
                     NotificationType.INFORMATION
                 )
@@ -57,11 +59,9 @@ class InsertEmojiCommitAction : AnAction(), DumbAware {
             }
         }
 
-        val popup = JBPopupFactory.getInstance()
-            .createListPopupBuilder(list)
+        val popup = PopupChooserBuilder(list)
             .setTitle("选择 Commit 模板")
-            .setItemChoosenCallback {
-                val selected = list.selectedValue ?: return@setItemChoosenCallback
+            .setItemChosenCallback { selected ->
                 applyTemplate(selected, e)
             }
             .createPopup()

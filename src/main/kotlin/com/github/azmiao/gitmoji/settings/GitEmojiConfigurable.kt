@@ -26,10 +26,11 @@ class GitEmojiConfigurable : Configurable {
         // 格式模板区域
         val formatPanel = JPanel(BorderLayout(JBUI.scale(5), 0))
         formatPanel.add(JLabel("格式模板:"), BorderLayout.WEST)
-        formatField = JTextField(settings.formatTemplate).apply {
+        val field = JTextField(settings.formatTemplate).apply {
             toolTipText = "支持占位符: \${emoji} \${type} \${name} \${description}"
         }
-        formatPanel.add(formatField, BorderLayout.CENTER)
+        formatField = field
+        formatPanel.add(field, BorderLayout.CENTER)
         p.add(formatPanel, BorderLayout.NORTH)
 
         // 模板列表表格：编辑副本，避免直接改动已保存的模板对象
