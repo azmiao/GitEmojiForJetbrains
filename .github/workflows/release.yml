@@ -144,7 +144,7 @@ jobs:
             echo "CHANGELOG.md 无变化，跳过提交"
             exit 0
           fi
-          git commit -m "chore: 更新 CHANGELOG"
+          git commit -m "chore 🔧: 更新 CHANGELOG"
           git push origin "HEAD:$DEFAULT_BRANCH"
 
   release:
