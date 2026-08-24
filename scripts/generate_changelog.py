@@ -14,7 +14,7 @@ from pathlib import Path
 
 VERSION_TAG_PATTERN = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")
 COMMIT_PATTERN = re.compile(
-    r"^(?P<type>[A-Za-z]+)(?:[^\w\s:(]+)?"
+    r"^(?P<type>[A-Za-z]+)(?:\s+[^\w\s:(]+)?"
     r"(?:\((?P<scope>[^)]+)\))?\s*:\s*(?P<message>.+)$"
 )
 GITHUB_NOREPLY_PATTERN = re.compile(
