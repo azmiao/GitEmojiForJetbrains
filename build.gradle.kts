@@ -74,30 +74,29 @@ tasks {
 }
 
 /**
- * 插件描述：与 plugin.xml / README 保持一致的完整中文说明。
- * 通过 build.gradle.kts 注入，确保 Marketplace 页面展示的是这段而不是 plugin.xml 里的 CDATA。
+ * 插件描述（英文）：Marketplace 校验要求描述以拉丁字符开头，且部分版本对非拉丁内容审核更严格，
+ * 因此统一使用英文。通过 build.gradle.kts 注入，覆盖 plugin.xml 中的 CDATA。
  */
 fun pluginDescription(): String = """
-    <h2>Git Emoji Lint 插件</h2>
-    <p>在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 <code>feat✨: </code> 格式的 commit 前缀，让提交记录更直观、更规范。</p>
+    <p><b>Git Emoji Lint</b> adds emoji prefix templates to the Git commit message editor. Pick a template from the Commit tool window toolbar to generate a <code>feat✨: </code> style prefix, making your commit history more readable and consistent.</p>
 
-    <h3>✨ 功能特性</h3>
+    <h3>✨ Features</h3>
     <ul>
-        <li><b>Commit 工具窗口工具栏按钮</b>：在提交信息编辑区工具栏中显示 emoji 按钮，点击即弹出模板列表。</li>
-        <li><b>模板选择弹窗</b>：列表展示 <code>emoji + type + name</code>（如 <code>✨ feat - 引入新功能</code>），上下键选择、回车确认，操作流畅。</li>
-        <li><b>一键覆盖输入框</b>：选中模板后自动生成前缀并覆盖 commit message 输入框，光标自动移到末尾，可直接继续输入正文。</li>
-        <li><b>可视化设置页面</b>：Settings → Tools → Git Emoji Lint，支持自定义格式模板（<code>${'$'}{emoji}</code>、<code>${'$'}{type}</code>、<code>${'$'}{name}</code>、<code>${'$'}{description}</code> 四种占位符）和模板列表增删改。</li>
+        <li><b>Toolbar button in Commit tool window</b>: Click the emoji button in the commit message editor toolbar to pop up the template list.</li>
+        <li><b>Template picker popup</b>: Displays <code>emoji + type + name</code> (e.g. <code>✨ feat - New feature</code>), navigate with arrow keys and confirm with Enter.</li>
+        <li><b>One-click overwrite</b>: Selecting a template generates the prefix and overwrites the commit message input, cursor moves to the end so you can keep typing immediately.</li>
+        <li><b>Visual settings page</b>: Settings → Tools → Git Emoji Lint. Customize the format template with <code>${'$'}{emoji}</code>, <code>${'$'}{type}</code>, <code>${'$'}{name}</code>, <code>${'$'}{description}</code> placeholders, and manage the template list.</li>
     </ul>
 
-    <h3>📋 默认模板</h3>
-    <p>内置 18 种常用提交类型模板：feat、fix、perf、refactor、format、patch、style、docs、chore、deps、revert、test、file、tag、config、ci、git、init。默认格式为 <code>${'$'}{type}${'$'}{emoji}: </code>，即生成 <code>feat✨: </code> 样式的前缀。</p>
+    <h3>📋 Default Templates</h3>
+    <p>Built-in 18 common commit type templates: feat, fix, perf, refactor, format, patch, style, docs, chore, deps, revert, test, file, tag, config, ci, git, init. Default format: <code>${'$'}{type}${'$'}{emoji}: </code>, producing prefixes like <code>feat✨: </code>.</p>
 
-    <h3>🛠 技术栈</h3>
+    <h3>🛠 Tech Stack</h3>
     <ul>
         <li>Kotlin + Gradle Kotlin DSL</li>
         <li>IntelliJ Platform Gradle Plugin 2.x</li>
         <li>JDK 21</li>
-        <li>兼容 IntelliJ IDEA 2024.2 及以上</li>
+        <li>Compatible with IntelliJ IDEA 2024.2+</li>
     </ul>
 """.trimIndent()
 
