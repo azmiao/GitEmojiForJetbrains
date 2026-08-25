@@ -32,7 +32,7 @@ class GitEmojiSettingsService : PersistentStateComponent<GitEmojiSettingsService
         set(value) { state.formatTemplate = value }
 
     companion object {
-        const val DEFAULT_FORMAT = "\${type} \${emoji}: "
+        const val DEFAULT_FORMAT = "\${type}\${emoji}: "
 
         /** DEFAULTS 是全局常量，必须深拷贝后再交给可变状态，否则会被就地修改。 */
         private fun defaultTemplates(): MutableList<EmojiTemplate> =
