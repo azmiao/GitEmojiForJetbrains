@@ -5,7 +5,7 @@
 
     <description><![CDATA[
         <h2>Git Emoji Lint 插件</h2>
-        <p>在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 <code>feat ✨: </code> 格式的 commit 前缀，让提交记录更直观、更规范。</p>
+        <p>在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 <code>feat✨: </code> 格式的 commit 前缀，让提交记录更直观、更规范。</p>
 
         <h3>✨ 功能特性</h3>
         <ul>
@@ -16,7 +16,7 @@
         </ul>
 
         <h3>📋 默认模板</h3>
-        <p>内置 18 种常用提交类型模板，包括 feat、fix、perf、refactor、docs、test、ci 等，默认格式为 <code>${type} ${emoji}: </code>。</p>
+        <p>内置 18 种常用提交类型模板，包括 feat、fix、perf、refactor、docs、test、ci 等，默认格式为 <code>${type}${emoji}: </code>。</p>
 
         <h3>🛠 技术栈</h3>
         <ul>

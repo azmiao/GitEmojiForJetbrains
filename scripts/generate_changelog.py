@@ -13,8 +13,9 @@ from pathlib import Path
 
 
 VERSION_TAG_PATTERN = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")
+# type 与 emoji 之间的空格可有可无（\s*），同时兼容 "feat ✨:" 旧格式与 "feat✨:" 新格式
 COMMIT_PATTERN = re.compile(
-    r"^(?P<type>[A-Za-z]+)(?:\s+[^\w\s:(]+)?"
+    r"^(?P<type>[A-Za-z]+)(?:\s*[^\w\s:(]+)?"
     r"(?:\((?P<scope>[^)]+)\))?\s*:\s*(?P<message>.+)$"
 )
 GITHUB_NOREPLY_PATTERN = re.compile(
