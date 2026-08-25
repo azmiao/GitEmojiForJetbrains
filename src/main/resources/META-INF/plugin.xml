@@ -4,26 +4,7 @@
     <vendor email="2362020227@qq.com" url="https://github.com/azmiao/GitEmojiLint">GitEmojiLint</vendor>
 
     <description><![CDATA[
-        <p><b>Git Emoji Lint</b> adds emoji prefix templates to the Git commit message editor. Pick a template from the Commit tool window toolbar to generate a <code>feat✨: </code> style prefix, making your commit history more readable and consistent.</p>
-
-        <h3>✨ Features</h3>
-        <ul>
-            <li><b>Toolbar button in Commit tool window</b>: Click the emoji button in the commit message editor toolbar to pop up the template list.</li>
-            <li><b>Template picker popup</b>: Displays <code>emoji + type + name</code> (e.g. <code>✨ feat - New feature</code>), navigate with arrow keys and confirm with Enter.</li>
-            <li><b>One-click overwrite</b>: Selecting a template generates the prefix and overwrites the commit message input, cursor moves to the end so you can keep typing immediately.</li>
-            <li><b>Visual settings page</b>: Settings → Tools → Git Emoji Lint. Customize the format template and manage the template list.</li>
-        </ul>
-
-        <h3>📋 Default Templates</h3>
-        <p>Built-in 18 common commit type templates: feat, fix, perf, refactor, format, patch, style, docs, chore, deps, revert, test, file, tag, config, ci, git, init. Default format: <code>${type}${emoji}: </code>, producing prefixes like <code>feat✨: </code>.</p>
-
-        <h3>🛠 Tech Stack</h3>
-        <ul>
-            <li>Kotlin + Gradle Kotlin DSL</li>
-            <li>IntelliJ Platform Gradle Plugin 2.x</li>
-            <li>JDK 21</li>
-            <li>Compatible with IntelliJ IDEA 2024.2+</li>
-        </ul>
+    Git Emoji Lint adds emoji prefix templates to the Git commit message editor. Pick a template from the Commit tool window toolbar to generate a `feat✨:` style prefix, making your commit history more readable and consistent.
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>

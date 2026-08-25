@@ -78,26 +78,49 @@ tasks {
  * 因此统一使用英文。通过 build.gradle.kts 注入，覆盖 plugin.xml 中的 CDATA。
  */
 fun pluginDescription(): String = """
-    <p><b>Git Emoji Lint</b> adds emoji prefix templates to the Git commit message editor. Pick a template from the Commit tool window toolbar to generate a <code>feat✨: </code> style prefix, making your commit history more readable and consistent.</p>
+Git Emoji Lint adds emoji prefix templates to the Git commit message editor. Pick a template from the Commit tool window toolbar to generate a `feat✨:` style prefix, making your commit history more readable and consistent.
 
-    <h3>✨ Features</h3>
-    <ul>
-        <li><b>Toolbar button in Commit tool window</b>: Click the emoji button in the commit message editor toolbar to pop up the template list.</li>
-        <li><b>Template picker popup</b>: Displays <code>emoji + type + name</code> (e.g. <code>✨ feat - New feature</code>), navigate with arrow keys and confirm with Enter.</li>
-        <li><b>One-click overwrite</b>: Selecting a template generates the prefix and overwrites the commit message input, cursor moves to the end so you can keep typing immediately.</li>
-        <li><b>Visual settings page</b>: Settings → Tools → Git Emoji Lint. Customize the format template with <code>${'$'}{emoji}</code>, <code>${'$'}{type}</code>, <code>${'$'}{name}</code>, <code>${'$'}{description}</code> placeholders, and manage the template list.</li>
-    </ul>
+## 📚 中文说明
 
-    <h3>📋 Default Templates</h3>
-    <p>Built-in 18 common commit type templates: feat, fix, perf, refactor, format, patch, style, docs, chore, deps, revert, test, file, tag, config, ci, git, init. Default format: <code>${'$'}{type}${'$'}{emoji}: </code>, producing prefixes like <code>feat✨: </code>.</p>
+在 Commit 工具窗口提供工具栏按钮，选择模板后自动生成 `feat✨: ` 格式的 commit 前缀，让提交记录更直观、更规范。
 
-    <h3>🛠 Tech Stack</h3>
-    <ul>
-        <li>Kotlin + Gradle Kotlin DSL</li>
-        <li>IntelliJ Platform Gradle Plugin 2.x</li>
-        <li>JDK 21</li>
-        <li>Compatible with IntelliJ IDEA 2024.2+</li>
-    </ul>
+## ✨ 功能特性
+
+- **Commit 工具窗口工具栏按钮**：在提交信息编辑区工具栏中显示 emoji 按钮，点击即弹出模板列表。
+- **模板选择弹窗**：列表展示 `emoji + type + name`（如 `✨ feat - 引入新功能`），上下键选择、回车确认，操作流畅。
+- **一键覆盖输入框**：选中模板后自动按格式模板生成前缀并覆盖 commit message 输入框内容，光标自动移到末尾，可直接继续输入正文。
+- **可视化设置页面**：`Settings → Tools → Git Emoji Lint`
+  - **自定义格式模板**：支持 `${'$'}{emoji}`、`${'$'}{type}`、`${'$'}{name}`、`${'$'}{description}` 四种占位符，自由组合出你想要的任何前缀格式。
+  - **模板列表增删改**：表格中 emoji、type、name、description 四列均可直接编辑，支持添加新模板、删除不用的模板。
+
+## 📋 默认模板
+
+<div align="center">
+
+| emoji | type | name | description |
+|:-----:|:----:|------|-------------|
+| ✨ | feat | 引入新功能 | 新功能 |
+| 🐛 | fix | 修复bug | BUG |
+| 🚀 | perf | 提高性能/优化 | 优化 |
+| 🎨 | refactor | 改进/重构代码 | 优化 |
+| 🥚 | format | 格式化代码 | 格式化 |
+| 🚑 | patch | 添加重要补丁 | 补丁 |
+| 💄 | style | 更新样式文件 | 样式 |
+| 📚 | docs | 添加/更新文档 | 文档 |
+| 🔧 | chore | 日常维护 | 杂项 |
+| 🧩 | deps | 修改依赖版本 | 依赖 |
+| 🔁 | revert | 还原之前的提交 | 回滚 |
+| 🧪 | test | 增加测试代码 | 测试 |
+| 📦 | file | 添加新文件 | 新文件 |
+| 📌 | tag | 发布版本/添加标签 | 书签 |
+| 🔧 | config | 修改配置文件 | 配置 |
+| ⚙️ | ci | Action持续集成相关修改 | 持续集成 |
+| 🙈 | git | 添加或修改.gitignore文件 | 不可见 |
+| 🎉 | init | 初次提交/初始化项目 | 初始化 |
+
+</div>
+
+默认格式模板为 `${'$'}{type}${'$'}{emoji}: `，即生成 `feat✨: ` 样式的前缀。所有模板及格式均可在设置页面自由修改。
 """.trimIndent()
 
 /**
