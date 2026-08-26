@@ -10,8 +10,14 @@
 
 - (breaking change) 默认和原VSC插件行为保持一致，type和emoji之间去除空格 @azmiao
 
+### 📚 文档
+
+- 调整插件描述，确保前40个字符为英文 @azmiao
+- 更新说明描述 @azmiao
+
 ### 🧹 日常维护
 
+- 更新 CHANGELOG @github-actions[bot]
 - 修正插件描述和更新日志逻辑 @azmiao
 - 优化BOT提交格式 @azmiao
 - 更新 CHANGELOG @github-actions[bot]
