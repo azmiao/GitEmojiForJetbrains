@@ -31,8 +31,42 @@ jobs:
           unzip -q /tmp/gradle.zip -d /opt
           echo "/opt/gradle-8.10.2/bin" >> "$GITHUB_PATH"
 
+      # 开发包版本号 = <gradle.properties 里的 pluginVersion>-<run_number>-<short_sha>，
+      # 例如 1.0.2-142-a1b2c3d。这样每次构建版本号都唯一且单调递增，
+      # IDE 才会把它识别为新版本并正常覆盖旧插件（同版本号会被拒绝替换）。
+      # 注意：后缀必须是数字开头，纯随机字母数字有约 2% 概率被判为「更旧」而装不上。
+      - name: Compute development version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          base_version="$(grep -E '^pluginVersion\s*=' gradle.properties | sed -E 's/^pluginVersion\s*=\s*//' | tr -d '[:space:]')"
+          short_sha="$(echo "$GITHUB_SHA" | cut -c1-7)"
+          dev_version="${base_version}-${GITHUB_RUN_NUMBER}-${short_sha}"
+          echo "base=$base_version" >> "$GITHUB_OUTPUT"
+          echo "dev=$dev_version" >> "$GITHUB_OUTPUT"
+          echo "开发包版本号: $dev_version"
+
       - name: Build plugin distribution
-        run: gradle buildPlugin -Dorg.gradle.java.home=$JAVA_HOME
+        run: gradle buildPlugin -Dorg.gradle.java.home=$JAVA_HOME -PpluginVersion=${{ steps.version.outputs.dev }}
+
+      - name: Verify version was applied
+        shell: bash
+        env:
+          EXPECTED_VERSION: ${{ steps.version.outputs.dev }}
+        run: |
+          set -euo pipefail
+          work="$(mktemp -d)"
+          unzip -q -o build/distributions/*.zip 'GitEmojiLint/lib/*.jar' -d "$work"
+          # 排除 searchableOptions，精确定位主 jar，避免 unzip -p 拼接多个 jar 导致读到错误内容
+          main_jar="$(find "$work/GitEmojiLint/lib" -name 'GitEmojiLint-*.jar' ! -name '*searchableOptions*' | head -n1)"
+          test -n "$main_jar"
+          actual="$(unzip -p "$main_jar" META-INF/plugin.xml | grep -oP '(?<=<version>)[^<]+' | head -n1)"
+          echo "plugin.xml 中的版本号: $actual"
+          if [[ "$actual" != "$EXPECTED_VERSION" ]]; then
+            echo "版本号未生效：期望 $EXPECTED_VERSION，实际 $actual" >&2
+            exit 1
+          fi
 
       - name: Locate plugin zip
         id: zip
