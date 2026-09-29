@@ -1,5 +1,3 @@
-.bitfun
-/.bitfun/search/flashgrep-index/
 .intellijPlatform
 build/
 .gradle/
@@ -7,3 +5,4 @@ out/
 *.iml
 .idea/
 docs/superpowers
+.openbitfun/
