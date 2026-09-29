@@ -1,5 +1,22 @@
 # 更新日志
 
+## 1.0.3 (2026-09-29)
+
+### ✨ 新功能
+
+- 保留已输入正文，切换模板只替换前缀 @azmiao
+
+### 🧹 日常维护
+
+- 开发构建包版本号附加 run_number 与短 SHA @azmiao
+- 更新 CHANGELOG @github-actions[bot]
+
+### 其他变更
+
+- v1.0.3 @azmiao
+- 更新预览图 @azmiao
+- 更新gitignore @azmiao
+
 ## 1.0.2 (2026-08-25)
 
 ### 🐛 Bug 修复
