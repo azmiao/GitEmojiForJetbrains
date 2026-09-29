@@ -13,6 +13,9 @@ class GitEmojiSettingsService : PersistentStateComponent<GitEmojiSettingsService
     class State {
         var templates: MutableList<EmojiTemplate> = defaultTemplates()
         var formatTemplate: String = DEFAULT_FORMAT
+
+        /** 切换模板时是否保留已输入的正文，只替换前缀。旧配置文件缺该字段时按默认值 true 加载。 */
+        var preserveExistingText: Boolean = true
     }
 
     private var state = State()
@@ -30,6 +33,10 @@ class GitEmojiSettingsService : PersistentStateComponent<GitEmojiSettingsService
     var formatTemplate: String
         get() = state.formatTemplate
         set(value) { state.formatTemplate = value }
+
+    var preserveExistingText: Boolean
+        get() = state.preserveExistingText
+        set(value) { state.preserveExistingText = value }
 
     companion object {
         const val DEFAULT_FORMAT = "\${type}\${emoji}: "

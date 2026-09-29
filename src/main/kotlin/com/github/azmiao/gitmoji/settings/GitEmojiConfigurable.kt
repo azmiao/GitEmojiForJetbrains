@@ -14,6 +14,7 @@ class GitEmojiConfigurable : Configurable {
     private val settings get() = GitEmojiSettingsService.getInstance()
     private var panel: JPanel? = null
     private var formatField: JTextField? = null
+    private var preserveCheckBox: JCheckBox? = null
     private var tableModel: EmojiTemplateTableModel? = null
     private var table: TableView<EmojiTemplate>? = null
 
@@ -23,7 +24,7 @@ class GitEmojiConfigurable : Configurable {
         val p = JPanel(BorderLayout(0, JBUI.scale(10)))
         p.border = JBUI.Borders.empty(10)
 
-        // 格式模板区域
+        // 格式模板区域 + 保留正文开关
         val formatPanel = JPanel(BorderLayout(JBUI.scale(5), 0))
         formatPanel.add(JLabel("格式模板:"), BorderLayout.WEST)
         val field = JTextField(settings.formatTemplate).apply {
@@ -31,7 +32,16 @@ class GitEmojiConfigurable : Configurable {
         }
         formatField = field
         formatPanel.add(field, BorderLayout.CENTER)
-        p.add(formatPanel, BorderLayout.NORTH)
+
+        val northPanel = JPanel(BorderLayout(0, JBUI.scale(5)))
+        northPanel.add(formatPanel, BorderLayout.NORTH)
+
+        val checkBox = JCheckBox("保留已输入的内容，只替换前缀", settings.preserveExistingText).apply {
+            toolTipText = "开启后切换模板只替换 commit 前缀，已输入的正文保持不变；关闭则整体覆盖输入框"
+        }
+        preserveCheckBox = checkBox
+        northPanel.add(checkBox, BorderLayout.SOUTH)
+        p.add(northPanel, BorderLayout.NORTH)
 
         // 模板列表表格：编辑副本，避免直接改动已保存的模板对象
         val model = EmojiTemplateTableModel()
@@ -59,6 +69,7 @@ class GitEmojiConfigurable : Configurable {
             addActionListener {
                 model.items = copyOf(EmojiTemplate.DEFAULTS)
                 formatField!!.text = GitEmojiSettingsService.DEFAULT_FORMAT
+                preserveCheckBox!!.isSelected = true
             }
         }
         val southPanel = JPanel(java.awt.FlowLayout(java.awt.FlowLayout.LEFT))
@@ -72,23 +83,28 @@ class GitEmojiConfigurable : Configurable {
     override fun isModified(): Boolean {
         val currentFormat = formatField?.text ?: return false
         val currentTemplates = tableModel?.items ?: return false
+        val currentPreserve = preserveCheckBox?.isSelected ?: return false
         return currentFormat != settings.formatTemplate ||
+               currentPreserve != settings.preserveExistingText ||
                currentTemplates != settings.templates
     }
 
     override fun apply() {
         settings.formatTemplate = formatField?.text ?: GitEmojiSettingsService.DEFAULT_FORMAT
+        settings.preserveExistingText = preserveCheckBox?.isSelected ?: true
         settings.templates = copyOf(tableModel?.items ?: emptyList())
     }
 
     override fun reset() {
         formatField?.text = settings.formatTemplate
+        preserveCheckBox?.isSelected = settings.preserveExistingText
         tableModel?.items = copyOf(settings.templates)
     }
 
     override fun disposeUIResources() {
         panel = null
         formatField = null
+        preserveCheckBox = null
         tableModel = null
         table = null
     }
